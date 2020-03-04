@@ -1,0 +1,40 @@
+﻿@model IEnumerable< ECommerce.Models.AdminOrderModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div class="conteiner pb-5">
+        <h2>Siparişler</h2>
+        <hr />
+
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Order Number</th>
+                    <th>Order Date</th>
+                    <th>Order Status</th>
+                    <th>Product Count</th>
+                    <th>Total</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.OrderNumber</td>
+                    <td>@item.OrderDate</td>
+                    <td>@item.OrderDate</td>
+                    <td>@item.Count</td>
+                    <td>@item.Total</td>
+                </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+

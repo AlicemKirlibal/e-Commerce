@@ -1,0 +1,86 @@
+﻿@model ECommerce.Models.Cart
+@{
+    ViewBag.Title = "Index";
+}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+
+<h2>Alışveriş Sepeti</h2>
+<hr />
+
+<div class="col-md-12">
+
+    @if (Model.CartLines.Count > 0)
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Quantity</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Sub Total</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CartLines)
+                {
+                    <tr>
+                        <td>
+                            <img src="/Upload/@item.Product.Image" width="50" />
+                        </td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Product.Name</td>
+                        <td>@item.Product.Price</td>
+                        <td>@((item.Product.Price * item.Quantity).ToString("c"))</td>
+                        <td>
+                            @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                            {
+                                @Html.Hidden("Id", item.Product.Id)
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+
+                                Delete
+                            </button>
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5"></td>
+                    <td>@Model.Total().ToString("c")</td>
+                </tr>
+            </tfoot>
+
+        </table>
+        <div class="text-center">
+      
+            <a href="/Home/List" class="btn btn-primary">
+                <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+
+                Alışverişe Devam Et
+            </a>
+
+            <a href="/Cart/Checkout" class="btn btn-primary">
+                <i class="fa fa-check" aria-hidden="true"></i>
+                Alışverişi Tamamla
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">
+            Sepetinizde ürün bulunmamaktadır.
+        </div>
+    }
+
+
+
+</div>

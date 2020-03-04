@@ -1,0 +1,22 @@
+﻿@model ECommerce.Models.Cart
+
+
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<style>
+#cart{
+    color:white;
+}
+</style>
+
+<ul class="navbar-nav my-2 my-lg-0">
+    <li id="cart" class="nav-item">
+        <a class="nav-link" href="/Cart">
+            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+            (@Model.CartLines.Count)
+
+        </a>      
+    </li>
+</ul>
